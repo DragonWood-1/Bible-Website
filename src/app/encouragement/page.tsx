@@ -78,19 +78,19 @@ export default function EncouragementPage() {
   return (
     <div className="min-h-screen bg-[#FDF8F0]">
       {/* Header */}
-      <div className="hero-bg py-14 px-6 text-center">
+      <div className="hero-bg py-10 sm:py-14 px-4 sm:px-6 text-center">
         <div className="max-w-2xl mx-auto">
-          <div className="w-16 h-16 rounded-full bg-[#C9A84C]/20 border border-[#C9A84C]/40 flex items-center justify-center mx-auto mb-4">
-            <Heart size={28} className="text-[#F0D27C]" />
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#C9A84C]/20 border border-[#C9A84C]/40 flex items-center justify-center mx-auto mb-3">
+            <Heart size={24} className="text-[#F0D27C]" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">AI Christian Encouragement</h1>
-          <p className="text-gray-300 font-sans leading-relaxed">
+          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">AI Christian Encouragement</h1>
+          <p className="text-gray-300 font-sans leading-relaxed text-sm sm:text-base">
             Share what you&apos;re feeling and receive personalized Bible verses, affirmations, and prayer — rooted in God&apos;s Word.
           </p>
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-4 py-8">
+      <div className="max-w-3xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
         {/* Quick prompts */}
         {messages.length === 0 && (
           <div className="mb-8">
@@ -114,7 +114,7 @@ export default function EncouragementPage() {
           {messages.map((msg, i) => (
             <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
               {msg.role === "user" ? (
-                <div className="chat-user px-5 py-3 max-w-sm text-sm font-sans">{msg.content}</div>
+                <div className="chat-user px-4 py-3 max-w-[85%] sm:max-w-sm text-sm font-sans">{msg.content}</div>
               ) : (
                 <div className="w-full">
                   {msg.data ? (
@@ -187,25 +187,25 @@ export default function EncouragementPage() {
         </div>
 
         {/* Input */}
-        <div className="sticky bottom-0 bg-[#FDF8F0] pb-4 pt-2">
+        <div className="sticky bottom-0 bg-[#FDF8F0] pb-safe pt-2">
           <div className="bg-white rounded-2xl border-2 border-[#F5ECD7] focus-within:border-[#C9A84C] transition-colors shadow-sm">
             <textarea
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
-              placeholder="Share how you're feeling... (e.g. 'I feel overwhelmed and stressed')"
-              className="w-full px-5 pt-4 pb-2 bg-transparent resize-none text-[#2C1810] font-sans text-sm focus:outline-none"
-              rows={3}
+              placeholder="Share how you're feeling..."
+              className="w-full px-4 pt-3 pb-2 bg-transparent resize-none text-[#2C1810] font-sans text-sm focus:outline-none"
+              rows={2}
             />
-            <div className="flex items-center justify-between px-4 pb-3">
-              <div className="flex gap-2 text-xs text-gray-400 font-sans">
-                <Music size={14} />
-                <span>Calming background music available in Meditation</span>
+            <div className="flex items-center justify-between px-3 pb-3">
+              <div className="hidden sm:flex gap-2 text-xs text-gray-400 font-sans items-center">
+                <Music size={13} />
+                <span>Meditation for calming music</span>
               </div>
               <button
                 onClick={() => handleSend()}
                 disabled={!input.trim() || loading}
-                className="flex items-center gap-2 px-5 py-2 rounded-full bg-[#0F1B3D] text-[#F0D27C] text-sm font-sans hover:bg-[#1E3A6E] transition-colors disabled:opacity-40"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F1B3D] text-[#F0D27C] text-sm font-sans hover:bg-[#1E3A6E] transition-colors disabled:opacity-40 ml-auto"
               >
                 {loading ? <Loader2 size={14} className="spinner" /> : <Send size={14} />}
                 Send

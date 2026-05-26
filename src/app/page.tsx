@@ -96,36 +96,36 @@ export default function HomePage() {
           ))}
         </div>
 
-        <div className="max-w-5xl mx-auto px-6 py-20 text-center relative z-10">
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <GreetingIcon size={18} className="text-[#F0D27C]" />
-            <span className="text-[#F0D27C] font-sans text-sm tracking-widest uppercase">{greeting} — Today&apos;s blessing awaits</span>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20 text-center relative z-10">
+          <div className="flex items-center justify-center gap-2 mb-5">
+            <GreetingIcon size={16} className="text-[#F0D27C] flex-shrink-0" />
+            <span className="text-[#F0D27C] font-sans text-xs sm:text-sm tracking-wide sm:tracking-widest uppercase">{greeting} — Today&apos;s blessing awaits</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-3">
             God&apos;s Word for
             <span className="block text-[#F0D27C]">Your Day</span>
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8 font-sans">
+          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-6 font-sans px-2">
             Daily Bible verses, faith affirmations, and AI-powered encouragement — tailored to your heart.
           </p>
 
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9A84C]/20 border border-[#C9A84C]/40 mb-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9A84C]/20 border border-[#C9A84C]/40 mb-8">
             <Star size={13} className="text-[#F0D27C] fill-[#F0D27C]" />
             <span className="text-[#F0D27C] text-sm font-sans font-medium">{streak}-day faith streak</span>
             <Star size={13} className="text-[#F0D27C] fill-[#F0D27C]" />
           </div>
 
           {/* Verse of the Day Card */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-[#C9A84C]/30 p-8 max-w-2xl mx-auto">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-[#C9A84C]/30 p-5 sm:p-8 max-w-2xl mx-auto">
             <div className="flex items-center gap-2 mb-4 justify-center">
               <BookOpen size={15} className="text-[#F0D27C]" />
               <span className="text-[#F0D27C] text-xs font-sans uppercase tracking-widest">Verse of the Day</span>
             </div>
-            <blockquote className="text-white text-xl sm:text-2xl font-medium leading-relaxed mb-4 italic">
+            <blockquote className="text-white text-lg sm:text-2xl font-medium leading-relaxed mb-4 italic">
               &ldquo;{todayVerse.text}&rdquo;
             </blockquote>
-            <p className="text-[#F0D27C] font-semibold font-sans mb-6">{todayVerse.reference}</p>
+            <p className="text-[#F0D27C] font-semibold font-sans mb-5">{todayVerse.reference}</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
               <button
                 onClick={() => handleSave(todayVerse.reference)}
@@ -151,11 +151,11 @@ export default function HomePage() {
       </section>
 
       {/* Affirmation of the Day */}
-      <section className="bg-[#FDF8F0] py-12 border-b border-[#F5ECD7]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+      <section className="bg-[#FDF8F0] py-10 sm:py-12 border-b border-[#F5ECD7]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <div className="section-divider mb-4" />
           <p className="text-[#8B6914] text-xs font-sans uppercase tracking-widest mb-4 mt-4">Affirmation of the Day</p>
-          <p className="text-2xl sm:text-3xl text-[#2C1810] font-medium leading-relaxed italic">
+          <p className="text-xl sm:text-3xl text-[#2C1810] font-medium leading-relaxed italic">
             &ldquo;{todayAffirmation}&rdquo;
           </p>
           <button
@@ -168,15 +168,15 @@ export default function HomePage() {
       </section>
 
       {/* Mood Selector */}
-      <section className="py-16 px-6 bg-white">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <div className="section-divider mb-4" />
-            <h2 className="text-3xl font-bold text-[#0F1B3D] mt-4 mb-2">How are you feeling?</h2>
-            <p className="text-gray-500 font-sans">Choose your mood and receive a Scripture handpicked for you.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0F1B3D] mt-4 mb-2">How are you feeling?</h2>
+            <p className="text-gray-500 font-sans text-sm sm:text-base">Choose your mood and receive a Scripture handpicked for you.</p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-8">
             {MOODS.map((mood) => (
               <button
                 key={mood.id}
@@ -220,12 +220,12 @@ export default function HomePage() {
       </section>
 
       {/* Prayer of the Day */}
-      <section className="py-16 px-6 bg-gradient-to-br from-[#FDF8F0] to-[#F5ECD7]">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-[#FDF8F0] to-[#F5ECD7]">
         <div className="max-w-3xl mx-auto text-center">
           <div className="section-divider mb-4" />
-          <h2 className="text-3xl font-bold text-[#0F1B3D] mt-4 mb-2">Today&apos;s Prayer</h2>
-          <p className="text-gray-500 font-sans mb-8">Start your conversation with God</p>
-          <div className="bg-white rounded-2xl border border-[#F5ECD7] shadow-sm p-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#0F1B3D] mt-4 mb-2">Today&apos;s Prayer</h2>
+          <p className="text-gray-500 font-sans mb-6">Start your conversation with God</p>
+          <div className="bg-white rounded-2xl border border-[#F5ECD7] shadow-sm p-5 sm:p-8">
             <div className="text-4xl mb-4">🙏</div>
             <p className="text-lg text-[#2C1810] leading-relaxed italic mb-6">{todayPrayer}</p>
             <div className="flex justify-center gap-3 flex-wrap">
@@ -241,26 +241,26 @@ export default function HomePage() {
       </section>
 
       {/* Feature Grid */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <div className="section-divider mb-4" />
-            <h2 className="text-4xl font-bold text-[#0F1B3D] mt-4 mb-3">Everything You Need</h2>
-            <p className="text-gray-500 font-sans text-lg">for a deeper, more consistent faith walk</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F1B3D] mt-4 mb-3">Everything You Need</h2>
+            <p className="text-gray-500 font-sans text-base sm:text-lg">for a deeper, more consistent faith walk</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {FEATURES.map((feature) => {
               const Icon = feature.icon;
               return (
-                <Link key={feature.href} href={feature.href} className="group bg-white rounded-2xl border border-gray-100 p-6 card-hover shadow-sm">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4`}>
-                    <Icon size={22} className="text-white" />
+                <Link key={feature.href} href={feature.href} className="group bg-white rounded-2xl border border-gray-100 p-4 sm:p-6 card-hover shadow-sm">
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-3`}>
+                    <Icon size={20} className="text-white" />
                   </div>
-                  <h3 className="font-bold text-[#0F1B3D] mb-2 group-hover:text-[#8B6914] transition-colors">{feature.label}</h3>
-                  <p className="text-sm text-gray-500 font-sans leading-relaxed">{feature.desc}</p>
-                  <div className="flex items-center gap-1 mt-4 text-[#C9A84C] text-sm font-sans">
+                  <h3 className="font-bold text-[#0F1B3D] text-sm sm:text-base mb-1 sm:mb-2 group-hover:text-[#8B6914] transition-colors">{feature.label}</h3>
+                  <p className="text-xs sm:text-sm text-gray-500 font-sans leading-relaxed hidden sm:block">{feature.desc}</p>
+                  <div className="flex items-center gap-1 mt-3 text-[#C9A84C] text-xs sm:text-sm font-sans">
                     <span>Explore</span>
-                    <ChevronRight size={13} />
+                    <ChevronRight size={12} />
                   </div>
                 </Link>
               );
@@ -315,12 +315,12 @@ export default function HomePage() {
       </section>
 
       {/* Email CTA */}
-      <section className="py-16 px-6 bg-white border-t border-[#F5ECD7]">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white border-t border-[#F5ECD7]">
         <div className="max-w-xl mx-auto text-center">
           <div className="text-4xl mb-4">✉️</div>
-          <h2 className="text-2xl font-bold text-[#0F1B3D] mb-2">Daily Verse to Your Inbox</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-[#0F1B3D] mb-2">Daily Verse to Your Inbox</h2>
           <p className="text-gray-500 font-sans text-sm mb-6">Receive your daily Bible verse, affirmation, and prayer prompt every morning — free.</p>
-          <div className="flex gap-3 max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input type="email" placeholder="your@email.com" className="flex-1 px-4 py-3 rounded-full border-2 border-[#F5ECD7] font-sans text-sm focus:outline-none focus:border-[#C9A84C] bg-[#FDF8F0]" />
             <button className="px-6 py-3 rounded-full bg-[#0F1B3D] text-[#F0D27C] font-sans font-semibold text-sm hover:bg-[#1E3A6E] transition-colors whitespace-nowrap">Subscribe Free</button>
           </div>

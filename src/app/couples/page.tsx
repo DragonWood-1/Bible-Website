@@ -93,15 +93,15 @@ export default function CouplesPage() {
   return (
     <div className="min-h-screen bg-[#FDF8F0]">
       {/* Header */}
-      <div className="hero-bg py-14 px-6 text-center">
+      <div className="hero-bg py-10 sm:py-14 px-4 sm:px-6 text-center">
         <div className="max-w-2xl mx-auto">
-          <div className="text-5xl mb-4">💑</div>
-          <h1 className="text-4xl font-bold text-white mb-3">Couples & Marriage</h1>
-          <p className="text-gray-300 font-sans">Strengthen your marriage with daily devotionals, prayer, and biblical affirmations — together.</p>
+          <div className="text-4xl sm:text-5xl mb-3">💑</div>
+          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">Couples & Marriage</h1>
+          <p className="text-gray-300 font-sans text-sm sm:text-base">Strengthen your marriage with daily devotionals, prayer, and biblical affirmations — together.</p>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-6">
@@ -144,20 +144,20 @@ export default function CouplesPage() {
                 <p className="text-gray-300 text-xs font-sans">Building a God-centered marriage together</p>
               </div>
 
-              {/* Day tabs */}
-              <div className="flex border-b border-[#F5ECD7] overflow-x-auto">
+              {/* Day tabs — scrollable on mobile */}
+              <div className="flex border-b border-[#F5ECD7] overflow-x-auto scrollbar-none -mb-px">
                 {DEVOTIONALS.map((d, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveDay(i)}
-                    className={`px-4 py-3 text-sm font-sans whitespace-nowrap transition-all ${activeDay === i ? "border-b-2 border-rose-500 text-rose-600 font-semibold" : "text-gray-500 hover:text-gray-700"}`}
+                    className={`px-4 py-3 text-sm font-sans whitespace-nowrap transition-all flex-shrink-0 ${activeDay === i ? "border-b-2 border-rose-500 text-rose-600 font-semibold" : "text-gray-500 hover:text-gray-700"}`}
                   >
                     {d.day}
                   </button>
                 ))}
               </div>
 
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <h3 className="font-bold text-[#0F1B3D] text-lg mb-1">{DEVOTIONALS[activeDay].title}</h3>
                 <p className="text-rose-500 text-sm font-sans mb-4">{DEVOTIONALS[activeDay].scripture}</p>
                 <p className="text-gray-600 leading-relaxed mb-5">{DEVOTIONALS[activeDay].text}</p>

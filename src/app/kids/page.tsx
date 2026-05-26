@@ -56,20 +56,20 @@ export default function KidsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-yellow-400 to-orange-400 py-12 px-6 text-center relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
+      <div className="bg-gradient-to-r from-yellow-400 to-orange-400 py-8 sm:py-12 px-4 sm:px-6 text-center relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {["⭐", "✨", "🌟", "💫"].map((star, i) => (
             <span key={i} className="absolute text-2xl opacity-40 gentle-pulse" style={{ left: `${25 * i}%`, top: `${20 + (i % 3) * 20}%`, animationDelay: `${i * 0.5}s` }}>{star}</span>
           ))}
         </div>
         <div className="relative z-10">
-          <div className="text-6xl mb-4">🌈</div>
-          <h1 className="text-4xl font-bold text-white mb-2">Kids Bible Corner!</h1>
-          <p className="text-yellow-100 font-sans">Learn God&apos;s Word, earn badges, and grow in faith!</p>
+          <div className="text-4xl sm:text-6xl mb-3">🌈</div>
+          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-1">Kids Bible Corner!</h1>
+          <p className="text-yellow-100 font-sans text-sm sm:text-base">Learn God&apos;s Word, earn badges, and grow in faith!</p>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
         {/* Score & Badges */}
         <div className="flex flex-wrap gap-4 justify-center mb-10">
           <div className="bg-white rounded-2xl border-2 border-yellow-200 px-6 py-4 text-center shadow-sm">

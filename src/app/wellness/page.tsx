@@ -67,24 +67,24 @@ export default function WellnessPage() {
   return (
     <div className="min-h-screen bg-[#FDF8F0]">
       {/* Header */}
-      <div className="hero-bg py-14 px-6 text-center">
+      <div className="hero-bg py-10 sm:py-14 px-4 sm:px-6 text-center">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-4xl font-bold text-white mb-3">Christian Mental Wellness</h1>
-          <p className="text-gray-300 font-sans">Biblical encouragement for life&apos;s hardest seasons. You are not alone — God is with you.</p>
+          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">Christian Mental Wellness</h1>
+          <p className="text-gray-300 font-sans text-sm sm:text-base">Biblical encouragement for life&apos;s hardest seasons. You are not alone — God is with you.</p>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
         {/* Topic selector */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
+        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-8">
           {wellnessTopics.map((topic) => (
             <button
               key={topic.id}
               onClick={() => { setActiveTopic(topic); setVerseIndex(0); }}
-              className={`p-4 rounded-2xl text-center transition-all border-2 ${activeTopic.id === topic.id ? "border-[#C9A84C] bg-[#C9A84C]/10 shadow-md scale-105" : "border-[#F5ECD7] bg-white hover:border-[#C9A84C]/50"}`}
+              className={`p-3 sm:p-4 rounded-2xl text-center transition-all border-2 ${activeTopic.id === topic.id ? "border-[#C9A84C] bg-[#C9A84C]/10 shadow-md scale-105" : "border-[#F5ECD7] bg-white hover:border-[#C9A84C]/50"}`}
             >
-              <div className="text-2xl mb-1">{topic.icon}</div>
-              <div className="text-sm font-sans font-medium text-[#0F1B3D]">{topic.label}</div>
+              <div className="text-xl sm:text-2xl mb-1">{topic.icon}</div>
+              <div className="text-xs sm:text-sm font-sans font-medium text-[#0F1B3D]">{topic.label}</div>
             </button>
           ))}
         </div>

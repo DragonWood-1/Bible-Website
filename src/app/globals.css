@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* iOS safe-area support */
+@supports (padding: max(0px)) {
+  .pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+  .pt-safe { padding-top: max(0px, env(safe-area-inset-top)); }
+}
+
 :root {
   --gold: #C9A84C;
   --gold-light: #F0D27C;
@@ -25,6 +31,18 @@ body {
   background-color: var(--cream);
   color: #2C1810;
   font-family: 'Georgia', 'Times New Roman', serif;
+  /* Prevent horizontal overflow on mobile */
+  overflow-x: hidden;
+}
+
+/* Faster tap response on mobile */
+button, a {
+  touch-action: manipulation;
+}
+
+/* Minimum tap target size */
+button {
+  min-height: 36px;
 }
 
 ::-webkit-scrollbar { width: 8px; }
@@ -107,3 +125,12 @@ body {
   100% { transform: scale(1); }
 }
 .star-pop { animation: starPop 0.3s ease; }
+
+/* Hide scrollbar for horizontal scroll tabs */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

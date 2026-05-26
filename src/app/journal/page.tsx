@@ -80,14 +80,14 @@ export default function JournalPage() {
   return (
     <div className="min-h-screen bg-[#FDF8F0]">
       {/* Header */}
-      <div className="hero-bg py-14 px-6 text-center">
+      <div className="hero-bg py-10 sm:py-14 px-4 sm:px-6 text-center">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-4xl font-bold text-white mb-3">Reflection Journal</h1>
-          <p className="text-gray-300 font-sans">Document your faith journey, gratitude, and God&apos;s work in your life.</p>
+          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">Reflection Journal</h1>
+          <p className="text-gray-300 font-sans text-sm sm:text-base">Document your faith journey, gratitude, and God&apos;s work in your life.</p>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Journal form */}
           <div className="lg:col-span-2">

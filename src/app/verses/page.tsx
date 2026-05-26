@@ -59,14 +59,14 @@ export default function VersesPage() {
   return (
     <div className="min-h-screen bg-[#FDF8F0]">
       {/* Header */}
-      <div className="hero-bg py-14 px-6 text-center">
+      <div className="hero-bg py-10 sm:py-14 px-4 sm:px-6 text-center">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-4xl font-bold text-white mb-3">Scripture Library</h1>
-          <p className="text-gray-300 font-sans">Search God&apos;s Word by topic, emotion, or situation. Every verse handpicked for your journey.</p>
+          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">Scripture Library</h1>
+          <p className="text-gray-300 font-sans text-sm sm:text-base">Search God&apos;s Word by topic, emotion, or situation. Every verse handpicked for your journey.</p>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
         {/* Search */}
         <div className="relative mb-6">
           <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -80,12 +80,12 @@ export default function VersesPage() {
         </div>
 
         {/* Topic filters */}
-        <div className="mb-8">
+        <div className="mb-6">
           <div className="flex items-center gap-2 mb-3">
             <Filter size={15} className="text-[#8B6914]" />
             <span className="text-sm text-[#8B6914] font-sans font-medium uppercase tracking-wide">Filter by Topic</span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             <button
               onClick={() => setSelectedTopic(null)}
               className={`px-3 py-1.5 rounded-full text-sm font-sans transition-all border ${!selectedTopic ? "bg-[#0F1B3D] text-[#F0D27C] border-[#0F1B3D]" : "bg-white border-[#F5ECD7] text-gray-600 hover:border-[#C9A84C]"}`}

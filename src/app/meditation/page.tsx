@@ -128,20 +128,20 @@ export default function MeditationPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0F1B3D] via-[#1E3A6E] to-[#3D1F6E]">
       {/* Header */}
-      <div className="py-16 px-6 text-center">
-        <div className="w-16 h-16 rounded-full bg-white/10 border border-[#C9A84C]/40 flex items-center justify-center mx-auto mb-4">
-          <Moon size={28} className="text-[#F0D27C]" />
+      <div className="py-10 sm:py-16 px-4 sm:px-6 text-center">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/10 border border-[#C9A84C]/40 flex items-center justify-center mx-auto mb-3">
+          <Moon size={24} className="text-[#F0D27C]" />
         </div>
-        <h1 className="text-4xl font-bold text-white mb-3">Scripture Meditation</h1>
-        <p className="text-gray-300 font-sans max-w-lg mx-auto">
+        <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">Scripture Meditation</h1>
+        <p className="text-gray-300 font-sans max-w-lg mx-auto text-sm sm:text-base px-2">
           Guided biblical meditation for sleep, morning, and peace. Let God&apos;s Word quiet your mind and restore your soul.
         </p>
       </div>
 
       {/* Active session overlay */}
       {activeSession && (
-        <div className="max-w-lg mx-auto px-6 mb-10">
-          <div className="bg-white/10 backdrop-blur rounded-3xl border border-[#C9A84C]/30 p-8 text-center">
+        <div className="max-w-lg mx-auto px-4 sm:px-6 mb-10">
+          <div className="bg-white/10 backdrop-blur rounded-3xl border border-[#C9A84C]/30 p-5 sm:p-8 text-center">
             <div className="flex justify-center gap-1.5 mb-6">
               {[...Array(5)].map((_, i) => (
                 <div key={i} className="audio-bar" style={{ animationDelay: `${i * 0.15}s`, height: `${20 + i * 10}%`, opacity: playing ? 1 : 0.3 }} />
@@ -170,8 +170,8 @@ export default function MeditationPage() {
       )}
 
       {/* Sessions */}
-      <div className="max-w-4xl mx-auto px-6 pb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-12">
+      <div className="max-w-4xl mx-auto px-3 sm:px-6 pb-12 sm:pb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 mb-10 sm:mb-12">
           {SESSIONS.map((session) => {
             const Icon = session.icon;
             return (
