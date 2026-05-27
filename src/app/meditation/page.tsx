@@ -126,9 +126,33 @@ export default function MeditationPage() {
   const currentTexts = activeSession ? GUIDED_TEXTS[activeSession] : [];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0F1B3D] via-[#1E3A6E] to-[#3D1F6E]">
+    <div className="min-h-screen bg-gradient-to-br from-[#0F1B3D] via-[#1E3A6E] to-[#3D1F6E] relative overflow-x-hidden">
+      {/* Twinkling stars */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        {[...Array(50)].map((_, i) => {
+          const sizes = [1, 1, 1, 1, 2, 2, 3];
+          const px = sizes[i % sizes.length];
+          const dur = (2.0 + (i * 0.43) % 4.5).toFixed(1);
+          const delay = ((i * 0.71) % 5).toFixed(1);
+          return (
+            <div
+              key={i}
+              className="absolute rounded-full bg-white gentle-pulse"
+              style={{
+                width: px,
+                height: px,
+                left: `${(i * 41 + 13) % 100}%`,
+                top: `${(i * 59 + 9) % 100}%`,
+                animationDelay: `${delay}s`,
+                "--twinkle-dur": `${dur}s`,
+              } as React.CSSProperties}
+            />
+          );
+        })}
+      </div>
+
       {/* Header */}
-      <div className="py-10 sm:py-16 px-4 sm:px-6 text-center">
+      <div className="py-10 sm:py-16 px-4 sm:px-6 text-center relative z-10">
         <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/10 border border-[#C9A84C]/40 flex items-center justify-center mx-auto mb-3">
           <Moon size={24} className="text-[#F0D27C]" />
         </div>
@@ -140,7 +164,7 @@ export default function MeditationPage() {
 
       {/* Active session overlay */}
       {activeSession && (
-        <div className="max-w-lg mx-auto px-4 sm:px-6 mb-10">
+        <div className="relative z-10 max-w-lg mx-auto px-4 sm:px-6 mb-10">
           <div className="bg-white/10 backdrop-blur rounded-3xl border border-[#C9A84C]/30 p-5 sm:p-8 text-center">
             <div className="flex justify-center gap-1.5 mb-6">
               {[...Array(5)].map((_, i) => (
@@ -170,7 +194,7 @@ export default function MeditationPage() {
       )}
 
       {/* Sessions */}
-      <div className="max-w-4xl mx-auto px-3 sm:px-6 pb-12 sm:pb-16">
+      <div className="relative z-10 max-w-4xl mx-auto px-3 sm:px-6 pb-12 sm:pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 mb-10 sm:mb-12">
           {SESSIONS.map((session) => {
             const Icon = session.icon;

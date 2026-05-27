@@ -87,13 +87,26 @@ export default function HomePage() {
       {/* Hero */}
       <section className="hero-bg relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(28)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white rounded-full gentle-pulse"
-              style={{ left: `${(i * 37) % 100}%`, top: `${(i * 53) % 100}%`, animationDelay: `${(i * 0.3) % 3}s`, opacity: 0.3 + (i % 5) * 0.1 }}
-            />
-          ))}
+          {[...Array(40)].map((_, i) => {
+            const sizes = [1, 1, 1, 2, 2, 3];
+            const px = sizes[i % sizes.length];
+            const dur = (2.2 + (i * 0.47) % 3.8).toFixed(1);
+            const delay = ((i * 0.61) % 4).toFixed(1);
+            return (
+              <div
+                key={i}
+                className="absolute rounded-full bg-white gentle-pulse"
+                style={{
+                  width: px,
+                  height: px,
+                  left: `${(i * 37 + 11) % 100}%`,
+                  top: `${(i * 53 + 7) % 100}%`,
+                  animationDelay: `${delay}s`,
+                  "--twinkle-dur": `${dur}s`,
+                } as React.CSSProperties}
+              />
+            );
+          })}
         </div>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20 text-center relative z-10">
