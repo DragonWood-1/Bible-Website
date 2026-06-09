@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* iOS safe-area */
+@supports (padding: max(0px)) {
+  .pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+  .pt-safe { padding-top: max(0px, env(safe-area-inset-top)); }
+}
+
+/* ─── Design tokens ─────────────────────────────────────────── */
+:root {
+  --parchment:      #F8F0DC;
+  --parchment-dark: #EDE0BF;
+  --parchment-deep: #DCCFA0;
+  --ink:            #1A0800;
+  --ink-mid:        #4A2800;
+  --ink-light:      #7A5020;
+  --crimson:        #6B1A1A;
+  --crimson-light:  #8B2424;
+  --gold:           #9D7A2C;
+  --gold-bright:    #C4963A;
+  --dark-wood:      #180E04;
+  --dark-section:   #1C1008;
+  --rule-color:     #C8B078;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--parchment);
+  color: var(--ink);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* Mobile tap */
+button, a { touch-action: manipulation; }
+button { min-height: 36px; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--parchment-dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ─── Typography helpers ─────────────────────────────────────── */
+.font-display {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  letter-spacing: -0.01em;
+}
+
+.small-caps {
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+}
+
+.verse-text {
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.verse-ref {
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  font-size: 0.85em;
+}
+
+/* ─── Ornamental dividers ────────────────────────────────────── */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  margin: 0 auto;
+}
+.ornament::before,
+.ornament::after {
+  content: '';
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: var(--rule-color);
+}
+
+.section-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule-color) 20%, var(--rule-color) 80%, transparent);
+  margin: 0;
+}
+
+/* ─── Dark / scripture header sections ──────────────────────── */
+.scripture-header {
+  background-color: var(--dark-section);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(157,122,44,0.06) 0%, transparent 70%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(255,255,255,0.015) 39px,
+      rgba(255,255,255,0.015) 40px
+    );
+  border-bottom: 1px solid rgba(157,122,44,0.25);
+}
+
+/* ─── Cards ──────────────────────────────────────────────────── */
+.parchment-card {
+  background: var(--parchment);
+  border: 1px solid var(--parchment-deep);
+  box-shadow: 0 2px 12px rgba(26,8,0,0.08), 0 1px 3px rgba(26,8,0,0.06);
+}
+
+.card-lift {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-lift:hover {
+  box-shadow: 0 6px 24px rgba(26,8,0,0.12);
+  border-color: var(--gold);
+}
+
+/* ─── Buttons ────────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--crimson);
+  color: var(--parchment);
+  border: 1px solid var(--crimson-light);
+  transition: background 0.15s ease;
+}
+.btn-primary:hover { background: var(--crimson-light); }
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--dark-wood);
+  border: 1px solid var(--gold-bright);
+  transition: background 0.15s ease;
+}
+.btn-gold:hover { background: var(--gold-bright); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  transition: all 0.15s ease;
+}
+.btn-outline:hover {
+  background: var(--gold);
+  color: var(--dark-wood);
+}
+
+/* ─── Mood buttons ───────────────────────────────────────────── */
+.mood-btn {
+  border: 1px solid var(--parchment-deep);
+  background: var(--parchment);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.mood-btn:hover, .mood-btn.active {
+  border-color: var(--gold);
+  background: var(--parchment-dark);
+}
+.mood-btn.active {
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+
+/* ─── Chat bubbles ───────────────────────────────────────────── */
+.chat-user {
+  background: var(--crimson);
+  color: var(--parchment);
+  border-radius: 16px 16px 4px 16px;
+}
+.chat-ai {
+  background: white;
+  border: 1px solid var(--parchment-deep);
+  border-radius: 16px 16px 16px 4px;
+}
+
+/* ─── Breathing exercise ─────────────────────────────────────── */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%       { transform: scale(1.12); opacity: 1; }
+}
+.breathe { animation: breathe 4s ease-in-out infinite; }
+
+/* ─── Spinner (functional only) ─────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { animation: spin 1s linear infinite; }
+
+/* ─── Audio visualizer ───────────────────────────────────────── */
+@keyframes audioBar {
+  0%, 100% { height: 30%; }
+  50%       { height: 100%; }
+}
+.audio-bar {
+  width: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: audioBar 0.9s ease-in-out infinite;
+}
+
+/* ─── Horizontal tab scrollbar ───────────────────────────────── */
+.scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* ─── Gentle fade-in for page sections ──────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.5s ease forwards; }
