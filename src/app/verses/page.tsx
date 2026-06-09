@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { Search, Bookmark, Share2, Filter } from "lucide-react";
 import { dailyVerses } from "@/data/verses";
+import PageHeader from "@/components/PageHeader";
 
 const ALL_TOPICS = Array.from(new Set(dailyVerses.flatMap(v => v.topic))).sort();
 
@@ -57,14 +58,12 @@ export default function VersesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDF8F0]">
-      {/* Header */}
-      <div className="hero-bg py-10 sm:py-14 px-4 sm:px-6 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">Scripture Library</h1>
-          <p className="text-gray-300 font-sans text-sm sm:text-base">Search God&apos;s Word by topic, emotion, or situation. Every verse handpicked for your journey.</p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-[#F8F0DC]">
+      <PageHeader
+        eyebrow="Scripture"
+        title="The Scripture Library"
+        subtitle="Search God's Word by topic, emotion, or life situation."
+      />
 
       <div className="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
         {/* Search */}
@@ -109,7 +108,7 @@ export default function VersesPage() {
 
         {/* Saved section */}
         {savedVerses.length > 0 && !query && !selectedTopic && (
-          <div className="mb-8 bg-[#C9A84C]/10 rounded-2xl border border-[#C9A84C]/30 p-5">
+          <div className="mb-8 bg-[#EDE0BF] rounded border border-[#DCCFA0] p-5">
             <h2 className="text-[#8B6914] font-semibold mb-3 flex items-center gap-2 font-sans">
               <Bookmark size={15} className="fill-[#8B6914]" />
               Saved Verses ({savedVerses.length})
@@ -128,7 +127,7 @@ export default function VersesPage() {
         {/* Verse grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filtered.map((verse) => (
-            <div key={verse.reference} className="bg-white rounded-2xl border border-[#F5ECD7] p-6 card-hover shadow-sm">
+            <div key={verse.reference} className="parchment-card card-lift rounded p-5">
               <blockquote className="text-[#2C1810] italic leading-relaxed mb-4">
                 &ldquo;{verse.text}&rdquo;
               </blockquote>

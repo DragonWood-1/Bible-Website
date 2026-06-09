@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Play, Pause, Moon, Star, Wind, Music } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
 import { sleepScriptures } from "@/data/verses";
 
 const SESSIONS = [
@@ -11,9 +12,8 @@ const SESSIONS = [
     icon: Moon,
     duration: "20 min",
     desc: "Drift into peaceful rest with calming Bible passages and gentle narration.",
-    color: "from-indigo-600 to-purple-700",
-    bg: "bg-indigo-50",
-    border: "border-indigo-100",
+    accent: "text-indigo-400",
+    bg: "bg-indigo-950/40 border-indigo-900/50",
   },
   {
     id: "morning",
@@ -21,9 +21,8 @@ const SESSIONS = [
     icon: Star,
     duration: "10 min",
     desc: "Start your day with an uplifting scripture meditation and affirmation.",
-    color: "from-amber-500 to-orange-500",
-    bg: "bg-amber-50",
-    border: "border-amber-100",
+    accent: "text-amber-400",
+    bg: "bg-amber-950/40 border-amber-900/50",
   },
   {
     id: "anxiety",
@@ -31,9 +30,8 @@ const SESSIONS = [
     icon: Wind,
     duration: "15 min",
     desc: "Box breathing with Psalm 46 and calming scripture to quiet anxious thoughts.",
-    color: "from-blue-500 to-cyan-500",
-    bg: "bg-blue-50",
-    border: "border-blue-100",
+    accent: "text-cyan-400",
+    bg: "bg-cyan-950/40 border-cyan-900/50",
   },
   {
     id: "worship",
@@ -41,9 +39,8 @@ const SESSIONS = [
     icon: Music,
     duration: "12 min",
     desc: "Psalms of praise with gentle instrumental music to lift your spirit.",
-    color: "from-rose-500 to-pink-500",
-    bg: "bg-rose-50",
-    border: "border-rose-100",
+    accent: "text-rose-400",
+    bg: "bg-rose-950/40 border-rose-900/50",
   },
 ];
 
@@ -126,65 +123,36 @@ export default function MeditationPage() {
   const currentTexts = activeSession ? GUIDED_TEXTS[activeSession] : [];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0F1B3D] via-[#1E3A6E] to-[#3D1F6E] relative overflow-x-hidden">
-      {/* Twinkling stars */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {[...Array(50)].map((_, i) => {
-          const sizes = [1, 1, 1, 1, 2, 2, 3];
-          const px = sizes[i % sizes.length];
-          const dur = (2.0 + (i * 0.43) % 4.5).toFixed(1);
-          const delay = ((i * 0.71) % 5).toFixed(1);
-          return (
-            <div
-              key={i}
-              className="absolute rounded-full bg-white gentle-pulse"
-              style={{
-                width: px,
-                height: px,
-                left: `${(i * 41 + 13) % 100}%`,
-                top: `${(i * 59 + 9) % 100}%`,
-                animationDelay: `${delay}s`,
-                "--twinkle-dur": `${dur}s`,
-              } as React.CSSProperties}
-            />
-          );
-        })}
-      </div>
-
-      {/* Header */}
-      <div className="py-10 sm:py-16 px-4 sm:px-6 text-center relative z-10">
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/10 border border-[#C9A84C]/40 flex items-center justify-center mx-auto mb-3">
-          <Moon size={24} className="text-[#F0D27C]" />
-        </div>
-        <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">Scripture Meditation</h1>
-        <p className="text-gray-300 font-sans max-w-lg mx-auto text-sm sm:text-base px-2">
-          Guided biblical meditation for sleep, morning, and peace. Let God&apos;s Word quiet your mind and restore your soul.
-        </p>
-      </div>
+    <div className="min-h-screen bg-[#1C1008]">
+      <PageHeader
+        eyebrow="Meditation"
+        title="Scripture Meditation"
+        subtitle="Guided biblical sessions for sleep, morning, anxiety, and praise. Let God's Word still your soul."
+      />
 
       {/* Active session overlay */}
       {activeSession && (
-        <div className="relative z-10 max-w-lg mx-auto px-4 sm:px-6 mb-10">
-          <div className="bg-white/10 backdrop-blur rounded-3xl border border-[#C9A84C]/30 p-5 sm:p-8 text-center">
+        <div className="max-w-lg mx-auto px-4 sm:px-6 mb-10">
+          <div className="bg-[#F8F0DC]/5 border border-[#9D7A2C]/30 rounded-xl p-5 sm:p-8 text-center">
             <div className="flex justify-center gap-1.5 mb-6">
               {[...Array(5)].map((_, i) => (
                 <div key={i} className="audio-bar" style={{ animationDelay: `${i * 0.15}s`, height: `${20 + i * 10}%`, opacity: playing ? 1 : 0.3 }} />
               ))}
             </div>
 
-            <p className="text-white text-lg leading-relaxed italic mb-6 min-h-[80px] transition-all duration-700">
+            <p className="text-[#F5EDD5] font-serif text-lg leading-relaxed italic mb-6 min-h-[80px] transition-all duration-700">
               {currentTexts[textIndex]}
             </p>
 
             <div className="flex justify-center gap-2 mb-4">
               {currentTexts.map((_, i) => (
-                <div key={i} className={`w-2 h-2 rounded-full transition-all ${i === textIndex ? "bg-[#F0D27C] scale-125" : "bg-white/30"}`} />
+                <div key={i} className={`w-2 h-2 rounded-full transition-all ${i === textIndex ? "bg-[#9D7A2C] scale-125" : "bg-[#F8F0DC]/20"}`} />
               ))}
             </div>
 
             <button
               onClick={stopSession}
-              className="flex items-center gap-2 mx-auto px-6 py-3 rounded-full bg-white/20 text-white font-sans text-sm hover:bg-white/30 transition-all"
+              className="flex items-center gap-2 mx-auto px-6 py-3 rounded-full bg-[#F8F0DC]/10 border border-[#9D7A2C]/30 text-[#F5EDD5] font-sans text-sm hover:bg-[#F8F0DC]/20 transition-all"
             >
               <Pause size={14} />
               End Session
@@ -194,7 +162,7 @@ export default function MeditationPage() {
       )}
 
       {/* Sessions */}
-      <div className="relative z-10 max-w-4xl mx-auto px-3 sm:px-6 pb-12 sm:pb-16">
+      <div className="max-w-4xl mx-auto px-3 sm:px-6 pb-12 sm:pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 mb-10 sm:mb-12">
           {SESSIONS.map((session) => {
             const Icon = session.icon;
@@ -202,17 +170,17 @@ export default function MeditationPage() {
               <button
                 key={session.id}
                 onClick={() => activeSession === session.id ? stopSession() : startSession(session.id)}
-                className={`${session.bg} ${session.border} border-2 rounded-2xl p-6 text-left transition-all card-hover ${activeSession === session.id ? "ring-2 ring-[#C9A84C]" : ""}`}
+                className={`${session.bg} border rounded-xl p-6 text-left transition-all hover:border-[#9D7A2C]/60 ${activeSession === session.id ? "ring-1 ring-[#9D7A2C]" : ""}`}
               >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${session.color} flex items-center justify-center mb-4`}>
-                  <Icon size={22} className="text-white" />
+                <div className="flex items-center justify-between mb-3">
+                  <Icon size={22} className={session.accent} />
+                  <span className="text-xs text-[#9D7A2C] font-sans bg-[#F8F0DC]/5 px-2 py-0.5 rounded-full border border-[#9D7A2C]/20">
+                    {session.duration}
+                  </span>
                 </div>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-bold text-[#0F1B3D]">{session.title}</h3>
-                  <span className="text-xs text-gray-500 font-sans bg-white/80 px-2 py-0.5 rounded-full">{session.duration}</span>
-                </div>
-                <p className="text-sm text-gray-600 font-sans leading-relaxed mb-4">{session.desc}</p>
-                <div className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${session.color} text-white text-sm font-sans w-fit`}>
+                <h3 className="font-serif text-[#F5EDD5] mb-2">{session.title}</h3>
+                <p className="text-sm text-[#C8B888]/70 font-serif leading-relaxed mb-4">{session.desc}</p>
+                <div className={`flex items-center gap-2 px-4 py-2 rounded-full border border-[#9D7A2C]/30 text-[#9D7A2C] text-sm font-sans w-fit`}>
                   {activeSession === session.id ? <><Pause size={13} /> Stop</> : <><Play size={13} /> Begin</>}
                 </div>
               </button>
@@ -221,16 +189,16 @@ export default function MeditationPage() {
         </div>
 
         {/* Sleep scriptures */}
-        <div className="bg-white/10 backdrop-blur rounded-3xl border border-[#C9A84C]/20 p-8">
-          <h2 className="text-white text-xl font-bold mb-6 flex items-center gap-2">
-            <Moon size={18} className="text-[#F0D27C]" />
+        <div className="bg-[#F8F0DC]/5 border border-[#9D7A2C]/20 rounded-xl p-8">
+          <h2 className="text-[#F5EDD5] font-serif text-xl mb-6 flex items-center gap-2">
+            <Moon size={18} className="text-[#9D7A2C]" />
             Sleep Scriptures
           </h2>
           <div className="space-y-5">
             {sleepScriptures.map((v) => (
-              <div key={v.reference} className="border-b border-white/10 pb-5 last:border-0 last:pb-0">
-                <blockquote className="text-gray-200 italic leading-relaxed mb-2">&ldquo;{v.text}&rdquo;</blockquote>
-                <p className="text-[#F0D27C] text-sm font-sans font-semibold">{v.reference}</p>
+              <div key={v.reference} className="border-b border-[#9D7A2C]/15 pb-5 last:border-0 last:pb-0">
+                <blockquote className="verse-text text-[#C8B888] leading-relaxed mb-2">&ldquo;{v.text}&rdquo;</blockquote>
+                <p className="verse-ref text-[#9D7A2C]">{v.reference}</p>
               </div>
             ))}
           </div>

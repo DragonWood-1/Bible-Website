@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Send, Loader2, BookOpen, Heart, Flower2, Music, RefreshCw, Bookmark } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
 
 interface Message {
   role: "user" | "assistant";
@@ -76,21 +77,14 @@ export default function EncouragementPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FDF8F0]">
-      {/* Header */}
-      <div className="hero-bg py-10 sm:py-14 px-4 sm:px-6 text-center">
-        <div className="max-w-2xl mx-auto">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#C9A84C]/20 border border-[#C9A84C]/40 flex items-center justify-center mx-auto mb-3">
-            <Heart size={24} className="text-[#F0D27C]" />
-          </div>
-          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">AI Christian Encouragement</h1>
-          <p className="text-gray-300 font-sans leading-relaxed text-sm sm:text-base">
-            Share what you&apos;re feeling and receive personalized Bible verses, affirmations, and prayer — rooted in God&apos;s Word.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-[#F8F0DC]">
+      <PageHeader
+        eyebrow="AI Encouragement"
+        title="A Word for Your Heart"
+        subtitle="Share what you're feeling. Receive scripture, an affirmation, and prayer — rooted in God's Word."
+      />
 
-      <div className="max-w-3xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
+      <div className="max-w-3xl mx-auto px-3 sm:px-4 py-6 sm:py-8 bg-[#F8F0DC] min-h-[calc(100vh-200px)]">
         {/* Quick prompts */}
         {messages.length === 0 && (
           <div className="mb-8">
@@ -100,7 +94,7 @@ export default function EncouragementPage() {
                 <button
                   key={prompt}
                   onClick={() => handleSend(prompt)}
-                  className="px-4 py-2 rounded-full bg-white border border-[#F5ECD7] text-sm text-[#0F1B3D] font-sans hover:border-[#C9A84C] hover:bg-[#FDF8F0] transition-all shadow-sm"
+                  className="px-4 py-2 rounded bg-[#EDE0BF] border border-[#DCCFA0] text-sm text-[#1A0800] font-serif hover:border-[#9D7A2C] hover:bg-[#E8D5A0] transition-all"
                 >
                   {prompt}
                 </button>
@@ -120,13 +114,13 @@ export default function EncouragementPage() {
                   {msg.data ? (
                     <div className="space-y-4">
                       {/* Encouragement */}
-                      <div className="bg-white rounded-2xl border border-[#F5ECD7] p-5 shadow-sm">
-                        <p className="text-[#2C1810] leading-relaxed">{msg.content || msg.data.encouragement}</p>
+                      <div className="parchment-card rounded p-5">
+                        <p className="text-[#1A0800] font-serif leading-relaxed">{msg.content || msg.data.encouragement}</p>
                       </div>
 
                       {/* Verse */}
                       {msg.data.verse && (
-                        <div className="bg-gradient-to-r from-[#0F1B3D] to-[#1E3A6E] rounded-2xl p-5">
+                        <div className="bg-[#1C1008] border border-[#9D7A2C]/30 rounded p-5">
                           <div className="flex items-center gap-2 mb-3">
                             <BookOpen size={14} className="text-[#F0D27C]" />
                             <span className="text-[#F0D27C] text-xs font-sans uppercase tracking-wide">Scripture for You</span>
@@ -145,7 +139,7 @@ export default function EncouragementPage() {
 
                       {/* Affirmation */}
                       {msg.data.affirmation && (
-                        <div className="bg-[#FDF8F0] rounded-2xl border border-[#F5ECD7] p-5">
+                        <div className="bg-[#EDE0BF] border border-[#DCCFA0] rounded p-5">
                           <div className="flex items-center gap-2 mb-2">
                             <Heart size={14} className="text-[#C9A84C]" />
                             <span className="text-[#8B6914] text-xs font-sans uppercase tracking-wide">Affirmation</span>
@@ -187,14 +181,14 @@ export default function EncouragementPage() {
         </div>
 
         {/* Input */}
-        <div className="sticky bottom-0 bg-[#FDF8F0] pb-safe pt-2">
-          <div className="bg-white rounded-2xl border-2 border-[#F5ECD7] focus-within:border-[#C9A84C] transition-colors shadow-sm">
+        <div className="sticky bottom-0 bg-[#F8F0DC] pb-safe pt-2">
+          <div className="bg-[#EDE0BF] rounded border border-[#DCCFA0] focus-within:border-[#9D7A2C] transition-colors shadow-sm">
             <textarea
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
               placeholder="Share how you're feeling..."
-              className="w-full px-4 pt-3 pb-2 bg-transparent resize-none text-[#2C1810] font-sans text-sm focus:outline-none"
+              className="w-full px-4 pt-3 pb-2 bg-transparent resize-none text-[#1A0800] font-serif text-sm focus:outline-none placeholder-[#9D7A2C]/60"
               rows={2}
             />
             <div className="flex items-center justify-between px-3 pb-3">
@@ -205,7 +199,7 @@ export default function EncouragementPage() {
               <button
                 onClick={() => handleSend()}
                 disabled={!input.trim() || loading}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F1B3D] text-[#F0D27C] text-sm font-sans hover:bg-[#1E3A6E] transition-colors disabled:opacity-40 ml-auto"
+                className="btn-primary flex items-center gap-2 px-4 py-2 rounded text-sm font-serif disabled:opacity-40 ml-auto"
               >
                 {loading ? <Loader2 size={14} className="spinner" /> : <Send size={14} />}
                 Send

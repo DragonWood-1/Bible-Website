@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Send, Heart, Loader2 } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
 import { prayerPrompts } from "@/data/verses";
 
 interface PrayerRequest {
@@ -93,30 +94,28 @@ export default function PrayerPage() {
   const filtered = filterCat ? requests.filter(r => r.category === filterCat) : requests;
 
   return (
-    <div className="min-h-screen bg-[#FDF8F0]">
-      {/* Header */}
-      <div className="hero-bg py-10 sm:py-14 px-4 sm:px-6 text-center">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-4xl sm:text-5xl mb-3">🙏</div>
-          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">Prayer Wall</h1>
-          <p className="text-gray-300 font-sans text-sm sm:text-base">Share your prayer requests and pray for others. Standing together in faith.</p>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-[#F8F0DC]">
+      <PageHeader
+        eyebrow="Prayer"
+        title="The Prayer Wall"
+        subtitle="Lift your burdens before God and stand in agreement with others."
+      />
       <div className="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
           {/* Left: Submit + AI prayer */}
           <div className="space-y-6">
+
             {/* Submit request */}
-            <div className="bg-white rounded-2xl border border-[#F5ECD7] shadow-sm p-6">
-              <h2 className="font-bold text-[#0F1B3D] mb-4">Share a Prayer Request</h2>
+            <div className="parchment-card rounded-xl p-6">
+              <h2 className="font-serif text-[#1A0800] text-xl mb-4">Share a Prayer Request</h2>
 
               {!isAnonymous && (
                 <input
                   value={name}
                   onChange={e => setName(e.target.value)}
                   placeholder="Your first name (optional)"
-                  className="w-full px-4 py-2.5 rounded-xl border-2 border-[#F5ECD7] font-sans text-sm text-[#2C1810] focus:outline-none focus:border-[#C9A84C] bg-[#FDF8F0] mb-3 transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#DCCFA0] font-serif text-sm text-[#1A0800] focus:outline-none focus:border-[#9D7A2C] bg-[#EDE0BF] mb-3 transition-colors"
                 />
               )}
 
@@ -125,7 +124,11 @@ export default function PrayerPage() {
                   <button
                     key={cat}
                     onClick={() => setCategory(cat)}
-                    className={`px-2.5 py-1 rounded-full text-xs font-sans transition-all border ${category === cat ? "bg-[#C9A84C] text-white border-[#C9A84C]" : "bg-[#FDF8F0] border-[#F5ECD7] text-gray-500 hover:border-[#C9A84C]"}`}
+                    className={`px-2.5 py-1 rounded-full text-xs font-sans transition-all border ${
+                      category === cat
+                        ? "btn-gold"
+                        : "border-[#DCCFA0] bg-[#EDE0BF] text-[#4A2800] hover:border-[#9D7A2C]"
+                    }`}
                   >
                     {cat}
                   </button>
@@ -137,18 +140,22 @@ export default function PrayerPage() {
                 onChange={e => setRequest(e.target.value)}
                 placeholder="Share your prayer need..."
                 rows={4}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[#F5ECD7] font-sans text-sm text-[#2C1810] resize-none focus:outline-none focus:border-[#C9A84C] bg-[#FDF8F0] mb-3 transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-[#DCCFA0] font-serif text-sm text-[#1A0800] resize-none focus:outline-none focus:border-[#9D7A2C] bg-[#EDE0BF] mb-3 transition-colors"
               />
 
               <label className="flex items-center gap-2 mb-4 cursor-pointer">
                 <input type="checkbox" checked={isAnonymous} onChange={e => setIsAnonymous(e.target.checked)} className="rounded" />
-                <span className="text-sm text-gray-500 font-sans">Post anonymously</span>
+                <span className="text-sm text-[#7A5020] font-sans">Post anonymously</span>
               </label>
 
               <button
                 onClick={handleSubmit}
                 disabled={!request.trim()}
-                className={`w-full py-3 rounded-xl font-sans font-semibold text-sm flex items-center justify-center gap-2 transition-all ${submitted ? "bg-green-500 text-white" : "bg-[#0F1B3D] text-[#F0D27C] hover:bg-[#1E3A6E] disabled:opacity-40"}`}
+                className={`w-full py-3 rounded-xl font-sans font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
+                  submitted
+                    ? "bg-[#3B7A57] text-white border border-[#3B7A57]"
+                    : "btn-primary disabled:opacity-40"
+                }`}
               >
                 <Send size={14} />
                 {submitted ? "Request Posted! 🙏" : "Post Prayer Request"}
@@ -156,38 +163,40 @@ export default function PrayerPage() {
             </div>
 
             {/* AI Prayer Generator */}
-            <div className="bg-gradient-to-br from-[#0F1B3D] to-[#3D1F6E] rounded-2xl p-6 text-white">
-              <h3 className="font-bold mb-2">✨ AI Prayer Generator</h3>
-              <p className="text-xs text-gray-300 font-sans mb-4">Generate a personalized prayer for your selected category.</p>
+            <div className="bg-[#1C1008] border border-[#9D7A2C]/30 rounded-xl p-6">
+              <h3 className="font-serif text-[#F5EDD5] text-lg mb-2">AI Prayer Generator</h3>
+              <p className="text-xs text-[#9D7A2C] font-sans mb-4">Generate a personalized prayer for your selected category.</p>
 
               <select
                 onChange={e => setCategory(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-white/10 border border-white/20 text-white font-sans text-sm mb-3 focus:outline-none"
+                className="w-full px-3 py-2 rounded-xl bg-[#F8F0DC]/10 border border-[#9D7A2C]/30 text-[#F5EDD5] font-sans text-sm mb-3 focus:outline-none"
               >
-                {CATEGORIES.map(cat => <option key={cat} value={cat} className="text-[#0F1B3D]">{cat}</option>)}
+                {CATEGORIES.map(cat => <option key={cat} value={cat} className="text-[#1A0800] bg-[#F8F0DC]">{cat}</option>)}
               </select>
 
               <button
                 onClick={generatePrayer}
                 disabled={loadingPrayer}
-                className="w-full py-2.5 rounded-xl bg-[#C9A84C] text-[#0F1B3D] font-sans font-semibold text-sm hover:bg-[#F0D27C] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-xl btn-gold font-sans font-semibold text-sm disabled:opacity-60 flex items-center justify-center gap-2"
               >
                 {loadingPrayer ? <><Loader2 size={14} className="spinner" /> Generating...</> : "Generate Prayer"}
               </button>
 
               {aiPrayer && (
-                <div className="mt-4 bg-white/10 rounded-xl p-4">
-                  <p className="text-sm text-gray-200 leading-relaxed italic">{aiPrayer}</p>
+                <div className="mt-4 bg-[#F8F0DC]/10 border border-[#9D7A2C]/20 rounded-xl p-4">
+                  <p className="text-sm text-[#C8B888] font-serif leading-relaxed italic">{aiPrayer}</p>
                 </div>
               )}
             </div>
 
             {/* Daily prayers */}
-            <div className="bg-white rounded-2xl border border-[#F5ECD7] shadow-sm p-5">
-              <h3 className="font-bold text-[#0F1B3D] mb-3">Today&apos;s Prayer Prompts</h3>
+            <div className="parchment-card rounded-xl p-5">
+              <h3 className="font-serif text-[#1A0800] text-lg mb-3">Today&apos;s Prayer Prompts</h3>
               <div className="space-y-3">
                 {dailyPrayers.map((p, i) => (
-                  <div key={i} className="text-sm text-gray-600 font-sans italic border-l-2 border-[#C9A84C] pl-3 leading-relaxed">{p.slice(0, 90)}...</div>
+                  <div key={i} className="text-sm text-[#4A2800] font-serif italic border-l-2 border-[#9D7A2C] pl-3 leading-relaxed">
+                    {p.slice(0, 90)}...
+                  </div>
                 ))}
               </div>
             </div>
@@ -196,15 +205,17 @@ export default function PrayerPage() {
           {/* Right: Prayer wall */}
           <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-[#0F1B3D] text-lg">Community Prayer Wall</h2>
-              <span className="text-sm text-gray-400 font-sans">{requests.length} requests</span>
+              <h2 className="font-serif text-[#1A0800] text-xl">Community Prayer Wall</h2>
+              <span className="text-sm text-[#7A5020] font-sans">{requests.length} requests</span>
             </div>
 
             {/* Category filter */}
             <div className="flex flex-wrap gap-2 mb-5">
               <button
                 onClick={() => setFilterCat(null)}
-                className={`px-3 py-1 rounded-full text-xs font-sans border transition-all ${!filterCat ? "bg-[#0F1B3D] text-[#F0D27C] border-[#0F1B3D]" : "bg-white border-[#F5ECD7] text-gray-500 hover:border-[#C9A84C]"}`}
+                className={`px-3 py-1 rounded-full text-xs font-sans border transition-all ${
+                  !filterCat ? "btn-primary" : "border-[#DCCFA0] bg-[#EDE0BF] text-[#4A2800] hover:border-[#9D7A2C]"
+                }`}
               >
                 All
               </button>
@@ -212,7 +223,9 @@ export default function PrayerPage() {
                 <button
                   key={cat}
                   onClick={() => setFilterCat(cat === filterCat ? null : cat)}
-                  className={`px-3 py-1 rounded-full text-xs font-sans border transition-all ${filterCat === cat ? "bg-[#C9A84C] text-white border-[#C9A84C]" : "bg-white border-[#F5ECD7] text-gray-500 hover:border-[#C9A84C]"}`}
+                  className={`px-3 py-1 rounded-full text-xs font-sans border transition-all ${
+                    filterCat === cat ? "btn-gold" : "border-[#DCCFA0] bg-[#EDE0BF] text-[#4A2800] hover:border-[#9D7A2C]"
+                  }`}
                 >
                   {cat.split(" ").slice(1).join(" ")}
                 </button>
@@ -221,27 +234,33 @@ export default function PrayerPage() {
 
             <div className="space-y-4">
               {filtered.map(req => (
-                <div key={req.id} className="bg-white rounded-2xl border border-[#F5ECD7] shadow-sm p-5">
+                <div key={req.id} className="parchment-card card-lift rounded-xl p-5">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <div className="w-7 h-7 rounded-full bg-[#FDF8F0] border border-[#F5ECD7] flex items-center justify-center text-xs font-semibold text-[#0F1B3D]">
+                        <div className="w-7 h-7 rounded-full bg-[#EDE0BF] border border-[#DCCFA0] flex items-center justify-center text-xs font-serif text-[#1A0800]">
                           {req.isAnonymous ? "🙏" : req.name[0]}
                         </div>
-                        <span className="font-semibold text-[#0F1B3D] text-sm">{req.name}</span>
-                        <span className="text-xs text-gray-400 font-sans">· {req.date}</span>
+                        <span className="font-serif text-[#1A0800] text-sm">{req.name}</span>
+                        <span className="text-xs text-[#7A5020] font-sans">· {req.date}</span>
                       </div>
-                      <span className="text-xs bg-[#FDF8F0] border border-[#F5ECD7] rounded-full px-2 py-0.5 text-gray-500 font-sans">{req.category}</span>
+                      <span className="text-xs bg-[#EDE0BF] border border-[#DCCFA0] rounded-full px-2 py-0.5 text-[#4A2800] font-sans">
+                        {req.category}
+                      </span>
                     </div>
                   </div>
 
-                  <p className="text-[#2C1810] text-sm leading-relaxed mb-4">{req.request}</p>
+                  <p className="text-[#1A0800] font-serif text-sm leading-relaxed mb-4">{req.request}</p>
 
                   <button
                     onClick={() => handlePray(req.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans transition-all ${prayedFor.has(req.id) ? "bg-red-50 border border-red-200 text-red-500" : "bg-[#FDF8F0] border border-[#F5ECD7] text-gray-600 hover:border-[#C9A84C] hover:text-[#8B6914]"}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans transition-all border ${
+                      prayedFor.has(req.id)
+                        ? "bg-[#6B1A1A]/10 border-[#6B1A1A]/30 text-[#6B1A1A]"
+                        : "border-[#DCCFA0] bg-[#EDE0BF] text-[#4A2800] hover:border-[#9D7A2C]"
+                    }`}
                   >
-                    <Heart size={13} className={prayedFor.has(req.id) ? "fill-red-400 text-red-400" : ""} />
+                    <Heart size={13} className={prayedFor.has(req.id) ? "fill-[#6B1A1A] text-[#6B1A1A]" : ""} />
                     {prayedFor.has(req.id) ? `Praying (${req.prayed})` : `Pray (${req.prayed})`}
                   </button>
                 </div>

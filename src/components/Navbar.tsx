@@ -3,18 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, BookOpen } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
-const navLinks = [
+const NAV = [
   { href: "/", label: "Home" },
   { href: "/encouragement", label: "Encouragement" },
-  { href: "/verses", label: "Scriptures" },
+  { href: "/verses", label: "Scripture" },
   { href: "/wellness", label: "Wellness" },
   { href: "/meditation", label: "Meditation" },
   { href: "/journal", label: "Journal" },
   { href: "/prayer", label: "Prayer" },
-  { href: "/couples", label: "Couples" },
-  { href: "/kids", label: "Kids" },
+  { href: "/couples", label: "Marriage" },
+  { href: "/kids", label: "Children" },
 ];
 
 export default function Navbar() {
@@ -22,62 +22,72 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0F1B3D]/95 backdrop-blur-sm border-b border-[#C9A84C]/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1C1008] border-b border-[#9D7A2C]/30">
+      {/* Top gold rule */}
+      <div className="h-[2px] bg-gradient-to-r from-transparent via-[#9D7A2C] to-transparent" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#F0D27C] flex items-center justify-center">
-              <BookOpen size={16} className="text-[#0F1B3D]" />
-            </div>
-            <span className="text-[#F0D27C] font-bold text-lg tracking-wide">FaithLifted</span>
+        <div className="flex items-center justify-between h-14">
+          {/* Logo / Wordmark */}
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <span className="text-[#9D7A2C] text-lg font-serif tracking-wide">✦</span>
+            <span
+              className="text-[#EDE0BF] font-serif tracking-widest text-sm sm:text-base"
+              style={{ fontVariant: "small-caps", letterSpacing: "0.12em" }}
+            >
+              FaithLifted
+            </span>
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
+          {/* Desktop links */}
+          <div className="hidden lg:flex items-center gap-0.5">
+            {NAV.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-1.5 text-sm rounded-md transition-all duration-200 font-sans ${
+                className={`px-3 py-1.5 text-xs tracking-wider transition-colors duration-150 font-serif ${
                   pathname === link.href
-                    ? "text-[#F0D27C] bg-[#C9A84C]/20 border border-[#C9A84C]/40"
-                    : "text-gray-300 hover:text-[#F0D27C] hover:bg-white/5"
+                    ? "text-[#C4963A] border-b border-[#9D7A2C]"
+                    : "text-[#C8B888]/80 hover:text-[#EDE0BF]"
                 }`}
+                style={{ fontVariant: "small-caps" }}
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile toggle */}
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden text-[#F0D27C] p-2"
-            aria-label="Toggle menu"
+            className="lg:hidden text-[#C8B888] p-2"
+            aria-label="Toggle navigation"
           >
-            {open ? <X size={24} /> : <Menu size={24} />}
+            {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer */}
       {open && (
-        <div className="lg:hidden bg-[#0F1B3D] border-t border-[#C9A84C]/20 px-4 py-3">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className={`block px-3 py-2.5 text-sm rounded-md mb-1 transition-all font-sans ${
-                pathname === link.href
-                  ? "text-[#F0D27C] bg-[#C9A84C]/20"
-                  : "text-gray-300 hover:text-[#F0D27C] hover:bg-white/5"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <div className="lg:hidden bg-[#1C1008] border-t border-[#9D7A2C]/20 px-4 pb-4 pt-2">
+          <div className="grid grid-cols-2 gap-1">
+            {NAV.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`px-3 py-2.5 text-sm font-serif rounded transition-colors ${
+                  pathname === link.href
+                    ? "text-[#C4963A] bg-[#9D7A2C]/10"
+                    : "text-[#C8B888]/80 hover:text-[#EDE0BF] hover:bg-white/5"
+                }`}
+                style={{ fontVariant: "small-caps", letterSpacing: "0.05em" }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </nav>
